@@ -2,8 +2,8 @@
 .DS_Store
 
 # dependencies
-node_modules/
-bower_components/
+node_modules
+bower_components
 npm-debug.log
 
 # webstorm crap
