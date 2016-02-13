@@ -1,0 +1,23 @@
+{
+  "name": "zreader",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Threeder/zreader",
+  "authors": [
+    "Brendan Dugan <dugan_brendan@yahoo.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.22"
+  }
+}
