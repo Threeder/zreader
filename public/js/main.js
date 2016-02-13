@@ -10,7 +10,7 @@ animate();
 function init() {
   renderer = new THREE.WebGLRenderer();
   element = renderer.domElement;
-  container = document.getElementById('example');
+  container = document.getElementById('top-container');
   container.appendChild(element);
 
   effect = new THREE.StereoEffect(renderer);
