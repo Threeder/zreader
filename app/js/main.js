@@ -1,9 +1,9 @@
 require({
-  baseUrl: 'js',
+  baseUrl: 'bower_components',
   // three.js should have UMD support soon, but it currently does not
-  shim: { 'vendor/three': { exports: 'THREE' } }
+  shim: { 'threejs/build/three': { exports: 'THREE' } }
 }, [
-  'vendor/three'
+  'threejs/build/three'
 ], function(THREE) {
 
   var scene, camera, renderer;
