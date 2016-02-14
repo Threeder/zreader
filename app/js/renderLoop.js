@@ -1,6 +1,10 @@
 define(['require', 'threejs/build/three', './StereoEffect'], function (require, THREE) {
   var scene, renderer;
 
+  function addText2Scene(text) {
+    scene.add(text);
+  }
+
   function _drawBox(){
 
     var urls = [
@@ -34,7 +38,6 @@ define(['require', 'threejs/build/three', './StereoEffect'], function (require, 
     );
 
     scene.add(skybox);
-
   }
   function _init() {
     var ThreeWrapper = require('./StereoEffect');
@@ -71,6 +74,7 @@ define(['require', 'threejs/build/three', './StereoEffect'], function (require, 
   }
 
   return {
-    run : run
+    run : run,
+    addText2Scene
   };
 });

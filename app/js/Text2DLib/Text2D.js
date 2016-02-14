@@ -18,7 +18,7 @@ var textAlign = require('./textAlign'),
       // this._textAlign = options.align || "center"
       // this.anchor = Label.fontAlignAnchor[ this._textAlign ]
       this.antialias = typeof(options.antialias==="undefined") ? true : options.antialias
-      this.text = text;
+      this._text = text;
     }
 
     Text2D.prototype = Object.create(THREE.Object3D.prototype);
