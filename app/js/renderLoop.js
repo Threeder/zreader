@@ -1,14 +1,51 @@
-console.log("ayy lmao");
+  console.log("ayy lmao");
 define(['threejs/build/three'], function (THREE) {
-  var scene, renderer;
+  var scene, renderer, box;
 
-  function _drawBox()
-  {
+  function _drawBox(){
     var geometry = new THREE.BoxGeometry(200, 200, 200);
     var material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
-    return mesh = new THREE.Mesh(geometry, material);
-  }
 
+    var urls = [
+    "Assets/desert_lf.png",
+    "Assets/desert_rt.png",
+    "Assets/desert_up.png",
+    "Assets/desert_dn.png",
+    "Assets/desert_bk.png",
+    "Assets/desert_ft.png"
+    ];
+
+    var cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
+    cubemap.format = THREE.RGBFormat;
+
+    var shader = THREE.ShaderLib['cube']; // init cube shader from built-in lib
+    shader.uniforms['tCube'].value = cubemap; // apply textures to shader
+
+    // create shader material
+    var skyBoxMaterial = new THREE.ShaderMaterial( {
+      fragmentShader: shader.fragmentShader,
+      vertexShader: shader.vertexShader,
+      uniforms: shader.uniforms,
+      depthWrite: false,
+      side: THREE.BackSide
+    });
+
+    // create skybox mesh
+    var skybox = new THREE.Mesh(
+      new THREE.CubeGeometry(10000, 10000, 10000),
+      skyBoxMaterial
+    );
+
+    scene.add(skybox);
+    var cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
+    cubemap.format = THREE.RGBFormat;
+    var material = new THREE.MeshLambertMaterial({
+      color: 0xffffff,
+      envMap: cubemap
+    });
+    return mesh = new THREE.Mesh(geometry, material);
+
+  }
   function _init() {
 
     console.log("ayy lmao");
@@ -17,7 +54,7 @@ define(['threejs/build/three'], function (THREE) {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 1000;
 
-    var box = _drawBox();
+    box = _drawBox();
 
     scene.add(box);
 
@@ -31,8 +68,8 @@ define(['threejs/build/three'], function (THREE) {
   function _animate() {
     requestAnimationFrame(_animate);
 
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
+    camera.rotation.x += 0.001;
+    camera.rotation.y += 0.002;
 
     renderer.render(scene, camera);
   }
