@@ -1,4 +1,6 @@
-'use strict';
+define(function (require, exports, module) {
+var textAlign = require('./textAlign'),
+    CanvasText = require('./CanvasText');
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -7,9 +9,6 @@ var _get = function get(_x3, _x4, _x5) { var _again = true; _function: while (_a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var textAlign = require('./textAlign'),
-    CanvasText = require('./CanvasText');
 
 var Text2D = (function (_THREE$Object3D) {
   _inherits(Text2D, _THREE$Object3D);
@@ -137,3 +136,4 @@ var Text2D = (function (_THREE$Object3D) {
 })(THREE.Object3D);
 
 module.exports = Text2D;
+});
