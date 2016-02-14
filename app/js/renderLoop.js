@@ -1,4 +1,4 @@
-define(['require', 'threejs/build/three', './StereoEffect', './OrbitControls.js'], function (require, THREE) {
+define(['require', 'threejs/build/three', './StereoEffect', './OrbitControls.js', './DeviceOrientationControls'], function (require, THREE) {
   var scene, renderer;
 
   function _drawBox(){
@@ -39,11 +39,13 @@ define(['require', 'threejs/build/three', './StereoEffect', './OrbitControls.js'
   function _init() {
     var ThreeWrapper = require('./StereoEffect');
     var ThreeOrbitDecorator = require('./OrbitControls.js');
-    
+    var ThreeDeviceControlsDecorator = require('./DeviceOrientationControls')
     ThreeWrapper();
     ThreeOrbitDecorator();
+    ThreeDeviceControlsDecorator();
     console.log("THREE.StereoEffect: ", THREE.StereoEffect);
     console.log("THREE.OrbitControls: ", THREE.OrbitControls);
+    console.log("THREE.devicectrl: ", THREE.DeviceOrientationControls);
     console.log("ayy lmao");
     scene = new THREE.Scene();
 
