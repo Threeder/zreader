@@ -1,4 +1,4 @@
-define(['require', 'threejs/build/three', './StereoEffect'], function (require, THREE) {
+define(['require', 'threejs/build/three'], function (require, THREE) {
   var scene, renderer;
 
   function addText2Scene(text) {
@@ -40,9 +40,7 @@ define(['require', 'threejs/build/three', './StereoEffect'], function (require, 
     scene.add(skybox);
   }
   function _init() {
-    var ThreeWrapper = require('./StereoEffect');
-    ThreeWrapper();
-    console.log("THREE.StereoEffect: ", THREE.StereoEffect);
+
     console.log("ayy lmao");
     scene = new THREE.Scene();
 
