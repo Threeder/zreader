@@ -27,7 +27,7 @@ define(function(require, module, exports) {
     }
 
     return result;
-  }
+  };
 
 
   var drawText = function(text, ctxOptions) {
