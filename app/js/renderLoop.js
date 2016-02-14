@@ -1,6 +1,6 @@
   console.log("ayy lmao");
 define(['threejs/build/three'], function (THREE) {
-  var scene, renderer, box;
+  var scene, renderer;
 
   function _drawBox(){
     var geometry = new THREE.BoxGeometry(200, 200, 200);
@@ -54,9 +54,8 @@ define(['threejs/build/three'], function (THREE) {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 1000;
 
-    box = _drawBox();
+    _drawBox();
 
-    scene.add(box);
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
