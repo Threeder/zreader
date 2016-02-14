@@ -10,8 +10,8 @@ define(['threejs/build/three'], function (THREE) {
     "Assets/desert_lf.png",
     "Assets/desert_up.png",
     "Assets/desert_dn.png",
-    "Assets/desert_bk.png",
-    "Assets/desert_ft.png"
+    "Assets/desert_ft.png",
+    "Assets/desert_bk.png"
     ];
 
     var cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
