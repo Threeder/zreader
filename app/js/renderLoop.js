@@ -6,8 +6,8 @@ define(['threejs/build/three'], function (THREE) {
     var material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
 
     var urls = [
-    "Assets/desert_rt.png",
     "Assets/desert_lf.png",
+    "Assets/desert_rt.png",
     "Assets/desert_up.png",
     "Assets/desert_dn.png",
     "Assets/desert_ft.png",
@@ -42,6 +42,8 @@ define(['threejs/build/three'], function (THREE) {
       color: 0xffffff,
       envMap: cubemap
     });
+    return mesh = new THREE.Mesh(geometry, material);
+
   }
   function _init() {
 
@@ -64,9 +66,8 @@ define(['threejs/build/three'], function (THREE) {
   function _animate() {
     requestAnimationFrame(_animate);
 
-    //camera.rotation.x += 0.001;
-   // camera.rotation.y += 0.002;
-    camera.rotation.z += 0.002;
+    camera.rotation.x += 0.001;
+    camera.rotation.y += 0.002;
 
     renderer.render(scene, camera);
   }
