@@ -1,7 +1,13 @@
 console.log("ayy lmao");
 define(['threejs/build/three'], function (THREE) {
-  var mesh, geometry, material;
   var scene, renderer;
+
+  function _drawBox()
+  {
+    var geometry = new THREE.BoxGeometry(200, 200, 200);
+    var material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
+    return mesh = new THREE.Mesh(geometry, material);
+  }
 
   function _init() {
 
@@ -11,11 +17,9 @@ define(['threejs/build/three'], function (THREE) {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 1000;
 
-    geometry = new THREE.BoxGeometry(200, 200, 200);
-    material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
+    var box = _drawBox();
 
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+    scene.add(box);
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
