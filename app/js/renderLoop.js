@@ -2,8 +2,6 @@ define(['threejs/build/three'], function (THREE) {
   var scene, renderer;
 
   function _drawBox(){
-    var geometry = new THREE.BoxGeometry(200, 200, 200);
-    var material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
 
     var urls = [
     "Assets/desert_lf.png",
@@ -36,13 +34,6 @@ define(['threejs/build/three'], function (THREE) {
     );
 
     scene.add(skybox);
-    var cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
-    cubemap.format = THREE.RGBFormat;
-    var material = new THREE.MeshLambertMaterial({
-      color: 0xffffff,
-      envMap: cubemap
-    });
-    return mesh = new THREE.Mesh(geometry, material);
 
   }
   function _init() {
