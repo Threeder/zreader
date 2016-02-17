@@ -8,4 +8,5 @@ define(function (require) {
   var renderLoop = require('./renderLoop');
   console.log(Text2D);
   renderLoop.run();
+  renderLoop.addText2Scene(text);
 });

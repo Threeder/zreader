@@ -103,6 +103,10 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
   var scene, renderer;
 
+  function addText2Scene(text) {
+    scene.add(text);
+  }
+
   function _drawBox(){
 
     var urls = [
@@ -136,7 +140,6 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     );
 
     scene.add(skybox);
-
   }
   function _init() {
 
@@ -174,6 +177,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
   }
 
   return {
-    run : run
+    run : run,
+    addText2Scene
   };
 });
