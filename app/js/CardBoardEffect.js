@@ -78,7 +78,10 @@ define(['require', 'threejs/build/three'], function (require, THREE){
 
       scene.updateMatrixWorld();
 
-      if ( camera.parent === null ) camera.updateMatrixWorld();
+      if ( camera.parent === null ) {
+        camera.updateMatrixWorld();
+      }
+
 
       _stereo.update( camera );
 
@@ -94,8 +97,6 @@ define(['require', 'threejs/build/three'], function (require, THREE){
       renderer.render( scene, _stereo.cameraR, _renderTarget );
 
       renderer.render( _scene, _camera );
-
-
     };
 
   };

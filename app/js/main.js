@@ -3,7 +3,9 @@ define(function (require) {
     require('./OrbitControls')();
     require('./DeviceOrientationControls')();
   })();
+
   THREE.CardBoardEffect = require('./CardBoardEffect');
+
   var Text2D = require('./Text2DLib/index');
   var renderLoop = require('./renderLoop');
   console.log(Text2D);

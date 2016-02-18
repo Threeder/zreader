@@ -2,7 +2,7 @@
 define(['require', 'threejs/build/three'], function (require, THREE) {
 
   var scene, renderer;
-  var effect;
+  var effect, camera;
 
   function addText2Scene(text) {
     scene.add(text);
@@ -11,19 +11,19 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
   function _drawBox(){
 
     var urls = [
-      "Assets/desert_lf.png",
-      "Assets/desert_rt.png",
-      "Assets/desert_up.png",
-      "Assets/desert_dn.png",
-      "Assets/desert_ft.png",
-      "Assets/desert_bk.png"
+      'Assets/desert_lf.png',
+      'Assets/desert_rt.png',
+      'Assets/desert_up.png',
+      'Assets/desert_dn.png',
+      'Assets/desert_ft.png',
+      'Assets/desert_bk.png'
     ];
 
     var cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
     cubemap.format = THREE.RGBFormat;
 
-    var shader = THREE.ShaderLib['cube']; // init cube shader from built-in lib
-    shader.uniforms['tCube'].value = cubemap; // apply textures to shader
+    var shader = THREE.ShaderLib.cube; // init cube shader from built-in lib
+    shader.uniforms.tCube.value = cubemap; // apply textures to shader
 
     // create shader material
     var skyBoxMaterial = new THREE.ShaderMaterial( {
@@ -44,7 +44,6 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
   }
   function _init() {
 
-    console.log("ayy lmao");
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
@@ -56,7 +55,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    effect = new THREE.CardBoardEffect( renderer )
+    effect = new THREE.CardBoardEffect( renderer );
     effect.setSize(window.innerWidth, window.innerHeight);
 
 
