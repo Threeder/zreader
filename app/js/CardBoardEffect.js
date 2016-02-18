@@ -1,5 +1,4 @@
 define(['require', 'threejs/build/three'], function (require, THREE){
-  console.log(THREE);
   return function ( renderer ) {
 
     var _camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );

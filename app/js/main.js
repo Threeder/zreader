@@ -4,9 +4,8 @@ define(function (require) {
     require('./DeviceOrientationControls')();
   })();
   THREE.CardBoardEffect = require('./CardBoardEffect');
-  var Text2D = require('./Text2DLib/index');
+  //var Text2D = require('./Text2DLib/index');
   var renderLoop = require('./renderLoop');
-  console.log(Text2D);
   renderLoop.run();
-  renderLoop.addText2Scene(text);
+  //renderLoop.addText2Scene(text);
 });
