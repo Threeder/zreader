@@ -54,10 +54,10 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
 
     effect = new THREE.CardBoardEffect( renderer );
     effect.setSize(window.innerWidth, window.innerHeight);
-
 
 
     document.body.appendChild(renderer.domElement);
@@ -67,9 +67,6 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
   function _animate() {
     requestAnimationFrame(_animate);
-
-    camera.rotation.x += 0.001;
-    camera.rotation.y += 0.002;
 
     effect.render(scene, camera);
   }
