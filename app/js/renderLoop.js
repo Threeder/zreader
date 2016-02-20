@@ -9,17 +9,17 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     // create a canvas element
     var canvas, context,texture;
     var material, mesh;
+
     canvas = document.createElement('canvas');
     context = canvas.getContext('2d');
-    context.font = "Bold 40px Arial";
-    context.fillStyle = "rgba(255,255,255,0.95)";
+    context.font = 'Bold 40px Arial';
+    context.fillStyle = 'rgba(255,255,255,0.95)';
     for (var i = 0; i < TextList.length ; i++) {
       context.fillText(TextList[i] ,0,  (i+1)*40);
     }
 
-
     // canvas contents will be used for a texture
-    texture = new THREE.Texture(canvas) 
+    texture = new THREE.Texture(canvas);
     texture.needsUpdate = true;
 
     material = new THREE.MeshBasicMaterial( {map: texture, side:THREE.DoubleSide } );
@@ -34,8 +34,10 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
   }
 
   function _drawBox(){
+    var urls, cubemap, shader;
+    var skyBoxMaterial, skybox;
 
-    var urls = [
+    urls = [
       'Assets/desert_lf.png',
       'Assets/desert_rt.png',
       'Assets/desert_up.png',
@@ -44,14 +46,14 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
       'Assets/desert_bk.png'
     ];
 
-    var cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
+    cubemap = THREE.ImageUtils.loadTextureCube(urls); // load textures
     cubemap.format = THREE.RGBFormat;
 
-    var shader = THREE.ShaderLib.cube; // init cube shader from built-in lib
+    shader = THREE.ShaderLib.cube; // init cube shader from built-in lib
     shader.uniforms.tCube.value = cubemap; // apply textures to shader
 
     // create shader material
-    var skyBoxMaterial = new THREE.ShaderMaterial( {
+    skyBoxMaterial = new THREE.ShaderMaterial( {
       fragmentShader: shader.fragmentShader,
       vertexShader: shader.vertexShader,
       uniforms: shader.uniforms,
@@ -60,7 +62,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     });
 
     // create skybox mesh
-    var skybox = new THREE.Mesh(
+    skybox = new THREE.Mesh(
       new THREE.CubeGeometry(10000, 10000, 10000),
       skyBoxMaterial
     );
@@ -68,6 +70,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     _scene.add(skybox);
   }
   function _init() {
+    var controls, textList;
 
     _scene = new THREE.Scene();
 
@@ -76,8 +79,8 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
     _drawBox();
 
-    var TextList = ["hello", "This"];
-    _drawText(TextList);
+    textList = ['hello', 'This'];
+    _drawText(textList);
 
 
     _renderer = new THREE.WebGLRenderer();
