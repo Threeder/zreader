@@ -1,8 +1,8 @@
 
 define(['require', 'threejs/build/three'], function (require, THREE) {
 
-  var scene, renderer;
-  var effect, camera;
+  var _scene, _renderer;
+  var _effect, _camera;
 
 
   function _drawText(TextList) {
@@ -30,7 +30,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
       material
     );
     mesh.position.set(0,50,0);
-    scene.add( mesh );
+    _scene.add( mesh );
   }
 
   function _drawBox(){
@@ -65,14 +65,14 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
       skyBoxMaterial
     );
 
-    scene.add(skybox);
+    _scene.add(skybox);
   }
   function _init() {
 
-    scene = new THREE.Scene();
+    _scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1000;
+    _camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+    _camera.position.z = 1000;
 
     _drawBox();
 
@@ -80,15 +80,15 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     _drawText(TextList);
 
 
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    controls = new THREE.OrbitControls( camera, renderer.domElement );
+    _renderer = new THREE.WebGLRenderer();
+    _renderer.setSize(window.innerWidth, window.innerHeight);
+    controls = new THREE.OrbitControls( _camera, _renderer.domElement );
 
-    effect = new THREE.CardBoardEffect( renderer );
-    effect.setSize(window.innerWidth, window.innerHeight);
+    _effect = new THREE.CardBoardEffect( _renderer );
+    _effect.setSize(window.innerWidth, window.innerHeight);
 
 
-    document.body.appendChild(renderer.domElement);
+    document.body.appendChild(_renderer.domElement);
 
 
   }
@@ -96,7 +96,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
   function _animate() {
     requestAnimationFrame(_animate);
 
-    effect.render(scene, camera);
+    _effect.render(_scene, _camera);
   }
 
   function run(){
