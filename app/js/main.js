@@ -7,5 +7,4 @@ define(function (require) {
   //var Text2D = require('./Text2DLib/index');
   var renderLoop = require('./renderLoop');
   renderLoop.run();
-  //renderLoop.addText2Scene(text);
 });
