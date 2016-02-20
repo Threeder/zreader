@@ -9,13 +9,16 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     // create a canvas element
     var canvas, context,texture;
     var material, mesh;
+    var fontSize = 45;
 
     canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 512;
     context = canvas.getContext('2d');
-    context.font = 'Bold 40px Arial';
-    context.fillStyle = 'rgba(255,255,255,0.95)';
+    context.font = fontSize.toString() + 'px Arial';
+    context.fillStyle = 'rgba(255,255,255,1)';
     for (var i = 0; i < TextList.length ; i++) {
-      context.fillText(TextList[i] ,0,  (i+1)*40);
+      context.fillText(TextList[i] ,0,  (i+1)*fontSize);
     }
 
     // canvas contents will be used for a texture
@@ -29,7 +32,8 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
       new THREE.PlaneGeometry(canvas.width, canvas.height),
       material
     );
-    mesh.position.set(0,50,0);
+
+    mesh.position.set(150,50,100);
     _scene.add( mesh );
   }
 
@@ -69,6 +73,18 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
     _scene.add(skybox);
   }
+  function _getText() {
+    
+    return ['Seek for the Sword that was broken:',
+      'In Imladris it dwells;',
+      'There shall be counsels taken',
+      'Stronger than Morgul-spells.',
+      'There shall be shown a token',
+      'That Doom is near at hand,',
+      'For Isildur\'s Bane shall waken,',
+    'And the Halfling forth shall stand'];
+  }
+
   function _init() {
     var controls, textList;
 
@@ -79,7 +95,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
     _drawBox();
 
-    textList = ['hello', 'This'];
+    textList = _getText();
     _drawText(textList);
 
 
@@ -100,6 +116,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     requestAnimationFrame(_animate);
 
     _effect.render(_scene, _camera);
+   // _renderer.render(_scene, _camera);
   }
 
   function run(){
