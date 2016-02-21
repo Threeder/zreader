@@ -85,6 +85,18 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     'And the Halfling forth shall stand'];
   }
 
+    function fullscreen() {
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
+      } else if (container.mozRequestFullScreen) {
+        container.mozRequestFullScreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      }
+    }
+
   function _init() {
     var controls, textList;
 
@@ -103,6 +115,21 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     _renderer.setSize(window.innerWidth, window.innerHeight);
     controls = new THREE.OrbitControls( _camera, _renderer.domElement );
 
+    function setOrientationControls(e) {
+      if (!e.alpha) {
+        return;
+      }
+
+      controls = new THREE.DeviceOrientationControls(_camera, true);
+      controls.connect();
+      controls.update();
+
+      element.addEventListener('click', fullscreen, false);
+
+      window.removeEventListener('deviceorientation', setOrientationControls, true);
+    }
+    window.addEventListener('deviceorientation', setOrientationControls, true);
+
     _effect = new THREE.CardBoardEffect( _renderer );
     _effect.setSize(window.innerWidth, window.innerHeight);
 
@@ -116,7 +143,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     requestAnimationFrame(_animate);
 
     _effect.render(_scene, _camera);
-   // _renderer.render(_scene, _camera);
+    // _renderer.render(_scene, _camera);
   }
 
   function run(){
