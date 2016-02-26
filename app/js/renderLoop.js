@@ -3,6 +3,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
   var _scene, _renderer;
   var _effect, _camera;
+  var controls;
 
 
   function _drawText(TextList) {
@@ -98,7 +99,7 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
     }
 
   function _init() {
-    var controls, textList;
+    var textList;
 
     _scene = new THREE.Scene();
 
@@ -113,34 +114,21 @@ define(['require', 'threejs/build/three'], function (require, THREE) {
 
     _renderer = new THREE.WebGLRenderer();
     _renderer.setSize(window.innerWidth, window.innerHeight);
-    controls = new THREE.OrbitControls( _camera, _renderer.domElement );
+    controls = new THREE.DeviceOrientationController( _camera, _renderer.domElement );
+    controls.connect();
 
-    function setOrientationControls(e) {
-      if (!e.alpha) {
-        return;
-      }
 
-      controls = new THREE.DeviceOrientationControls(_camera, true);
-      controls.connect();
-      controls.update();
-
-      element.addEventListener('click', fullscreen, false);
-
-      window.removeEventListener('deviceorientation', setOrientationControls, true);
-    }
-    window.addEventListener('deviceorientation', setOrientationControls, true);
 
     _effect = new THREE.CardBoardEffect( _renderer );
     _effect.setSize(window.innerWidth, window.innerHeight);
 
-
     document.body.appendChild(_renderer.domElement);
-
 
   }
 
   function _animate() {
     requestAnimationFrame(_animate);
+    controls.update();
 
     _effect.render(_scene, _camera);
     // _renderer.render(_scene, _camera);
